@@ -4,41 +4,49 @@
 #
 Name     : check-manifest
 Version  : 0.37
-Release  : 2
+Release  : 3
 URL      : https://files.pythonhosted.org/packages/49/ac/67d065556adcad8144cb51e9d8848006dc3a9f5da7491faaf7db6374e301/check-manifest-0.37.tar.gz
 Source0  : https://files.pythonhosted.org/packages/49/ac/67d065556adcad8144cb51e9d8848006dc3a9f5da7491faaf7db6374e301/check-manifest-0.37.tar.gz
-Summary  : Check MANIFEST.in in a Python source package for completeness
+Summary  : Check MANIFEST.in in a Python package for completeness
 Group    : Development/Tools
 License  : MIT
-Requires: check-manifest-bin
-Requires: check-manifest-python3
-Requires: check-manifest-python
-Requires: python-mock
+Requires: check-manifest-bin = %{version}-%{release}
+Requires: check-manifest-license = %{version}-%{release}
+Requires: check-manifest-python = %{version}-%{release}
+Requires: check-manifest-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : pbr
+BuildRequires : pbr-python
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
+BuildRequires : python-mock-python
 BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+check-manifest
 ==============
-        
-        |buildstatus|_ |appveyor|_ |coverage|_
-        
-        Are you a Python developer?  Have you uploaded packages to the Python Package
-        Index?  Have you accidentally uploaded *broken* packages with some files
-        missing?  If so, check-manifest is for you.
-        
-        Quick start
-        -----------
+|buildstatus|_ |appveyor|_ |coverage|_
+Are you a Python developer?  Have you uploaded packages to the Python Package
+Index?  Have you accidentally uploaded *broken* packages with some files
+missing?  If so, check-manifest is for you.
 
 %package bin
 Summary: bin components for the check-manifest package.
 Group: Binaries
+Requires: check-manifest-license = %{version}-%{release}
 
 %description bin
 bin components for the check-manifest package.
+
+
+%package license
+Summary: license components for the check-manifest package.
+Group: Default
+
+%description license
+license components for the check-manifest package.
 
 
 %package python
@@ -67,7 +75,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1538620652
+export SOURCE_DATE_EPOCH=1551038947
+export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %check
@@ -77,6 +86,8 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/check-manifest
+cp LICENSE.rst %{buildroot}/usr/share/package-licenses/check-manifest/LICENSE.rst
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -88,6 +99,10 @@ echo ----[ mark ]----
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/check-manifest
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/check-manifest/LICENSE.rst
 
 %files python
 %defattr(-,root,root,-)
