@@ -4,10 +4,10 @@
 #
 Name     : check-manifest
 Version  : 0.40
-Release  : 11
+Release  : 12
 URL      : https://files.pythonhosted.org/packages/10/2a/71cf4f24856ecef4a86be5b90591fcfb490adef38c424f6e7698af4269bb/check-manifest-0.40.tar.gz
 Source0  : https://files.pythonhosted.org/packages/10/2a/71cf4f24856ecef4a86be5b90591fcfb490adef38c424f6e7698af4269bb/check-manifest-0.40.tar.gz
-Summary  : Check MANIFEST.in in a Python package for completeness
+Summary  : Check MANIFEST.in in a Python source package for completeness
 Group    : Development/Tools
 License  : MIT
 Requires: check-manifest-bin = %{version}-%{release}
@@ -16,6 +16,8 @@ Requires: check-manifest-python = %{version}-%{release}
 Requires: check-manifest-python3 = %{version}-%{release}
 Requires: toml
 BuildRequires : buildreq-distutils3
+BuildRequires : pbr
+BuildRequires : pbr-python
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
@@ -26,12 +28,16 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
-check-manifest
 ==============
-|buildstatus|_ |appveyor|_ |coverage|_
-Are you a Python developer?  Have you uploaded packages to the Python Package
-Index?  Have you accidentally uploaded *broken* packages with some files
-missing?  If so, check-manifest is for you.
+        
+        |buildstatus|_ |appveyor|_ |coverage|_
+        
+        Are you a Python developer?  Have you uploaded packages to the Python Package
+        Index?  Have you accidentally uploaded *broken* packages with some files
+        missing?  If so, check-manifest is for you.
+        
+        Quick start
+        -----------
 
 %package bin
 Summary: bin components for the check-manifest package.
@@ -70,14 +76,14 @@ python3 components for the check-manifest package.
 
 %prep
 %setup -q -n check-manifest-0.40
+cd %{_builddir}/check-manifest-0.40
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571152155
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1576009216
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -93,7 +99,7 @@ python3 setup.py build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-PYTHONPATH=%{buildroot}/usr/lib/python3.7/site-packages python3 setup.py test
+PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python setup.py test
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
