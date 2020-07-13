@@ -4,7 +4,7 @@
 #
 Name     : check-manifest
 Version  : 0.42
-Release  : 17
+Release  : 18
 URL      : https://files.pythonhosted.org/packages/ee/8d/1f98cb6bf7bbee73e3ba333c39c0dd4585a334d20b4c7ba658ca12007311/check-manifest-0.42.tar.gz
 Source0  : https://files.pythonhosted.org/packages/ee/8d/1f98cb6bf7bbee73e3ba333c39c0dd4585a334d20b4c7ba658ca12007311/check-manifest-0.42.tar.gz
 Summary  : Check MANIFEST.in in a Python source package for completeness
