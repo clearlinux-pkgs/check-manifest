@@ -1,5 +1,5 @@
 PKG_NAME := check-manifest
-URL = https://files.pythonhosted.org/packages/28/7e/7320775f6d032a62cfb1569dfb4ad995d9137e5ef287291f6eb6e9d7ea13/check-manifest-0.43.tar.gz
+URL = https://files.pythonhosted.org/packages/6c/6f/89eff3f6ff747be38d136a41f12aea71d6c29d7f726a15655745c14bfd9b/check-manifest-0.44.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
