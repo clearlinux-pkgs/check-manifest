@@ -4,7 +4,7 @@
 #
 Name     : check-manifest
 Version  : 0.44
-Release  : 21
+Release  : 22
 URL      : https://files.pythonhosted.org/packages/6c/6f/89eff3f6ff747be38d136a41f12aea71d6c29d7f726a15655745c14bfd9b/check-manifest-0.44.tar.gz
 Source0  : https://files.pythonhosted.org/packages/6c/6f/89eff3f6ff747be38d136a41f12aea71d6c29d7f726a15655745c14bfd9b/check-manifest-0.44.tar.gz
 Summary  : Check MANIFEST.in in a Python source package for completeness
@@ -70,7 +70,7 @@ Summary: python3 components for the check-manifest package.
 Group: Default
 Requires: python3-core
 Provides: pypi(check_manifest)
-Requires: pypi(pep517)
+Requires: pypi(build)
 Requires: pypi(setuptools)
 Requires: pypi(toml)
 
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1601997543
+export SOURCE_DATE_EPOCH=1608050222
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
