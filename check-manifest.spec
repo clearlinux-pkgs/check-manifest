@@ -4,7 +4,7 @@
 #
 Name     : check-manifest
 Version  : 0.47
-Release  : 29
+Release  : 30
 URL      : https://files.pythonhosted.org/packages/06/bf/19135a8e930f6d7fd3049a34ae5316c7870b0badd14f07dd53ba58c2bf93/check-manifest-0.47.tar.gz
 Source0  : https://files.pythonhosted.org/packages/06/bf/19135a8e930f6d7fd3049a34ae5316c7870b0badd14f07dd53ba58c2bf93/check-manifest-0.47.tar.gz
 Summary  : Check MANIFEST.in in a Python source package for completeness
@@ -87,7 +87,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632320958
+export SOURCE_DATE_EPOCH=1635710713
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
